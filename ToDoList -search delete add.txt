@@ -1,0 +1,63 @@
+import React, { useState } from "react";
+
+const App = () => {
+  const [list, setList] = useState([
+    
+  ]);
+  const [toDo, setToDo] = useState("");
+  const [search, setSearch] = useState(``);
+
+ 
+
+  const createNewToDoItem = () => {
+    //validate todo
+    if (!toDo) {
+      alert("Please enter a todo!");
+      return;
+    }
+    const newToDo = { text: toDo };
+    setList([...list, newToDo]);
+    setToDo("");
+  };
+
+ 
+
+  const handleInput = (e) => {
+    setToDo(e.target.value);
+  };
+
+  const handleDelete = (id) => {
+    setList(list.filter(li => li !== id));
+  };
+  
+  return (
+    <div >
+      <h1 >React To Do</h1>
+      <div>
+      <input
+            type='text'
+            className='input'
+            onChange={e => setSearch(e.target.value)}
+            placeholder='Search...'
+          />
+        <div >
+          {list
+              .filter(li => li.text.toLowerCase().includes(search.toLowerCase()))
+              .map((item,key) => {
+            return <li key={key} item={item} ><p>{item.text}<button className='delete' onClick={() => handleDelete(item)}>dELETE
+            </button></p></li>;
+          })}
+        </div>
+
+        <div className="ToDoInput">
+          <input type="text" value={toDo} onChange={handleInput} />
+          <button className="ToDo-Add" onClick={createNewToDoItem}>
+            AddList
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default App;
