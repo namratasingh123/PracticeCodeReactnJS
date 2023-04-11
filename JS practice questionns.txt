@@ -1,0 +1,28 @@
+que 1 :-
+
+const input1 = {a:1 ,b:2,c:3,d:10,e:12};
+const input2 = {a:2,e:12,f:6,d:10}
+// display output as {e:12,d:10}
+
+function f(input1,input2){
+let obj ={};
+for(i in input1){
+if(input1[i]==input2[i]){
+obj[i]=input1[i];
+}
+}
+return obj;
+}
+
+
+que 2 := remove duplicate and show secondlargest
+
+const input =[1,2,-2,11,7,1]  ;
+const input2 =[1,4,7,2,4,7]; 
+
+function secLargest(input){
+let arr= [...new  Set(input)].sort((a,b)=>a-b);
+return arr[arr.length-2];
+}   
+console.log(secLargest(input));    output = 7
+console.log(secLargest(input2));    output = 4
